@@ -1,10 +1,6 @@
 import os
 from setuptools import setup, Extension
 
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
-
-
 setup(
     name = 'accumulation_tree',
     version = '0.2',
@@ -12,7 +8,10 @@ setup(
     author = 'Timo Kluck',
     author_email = 'tkluck@infty.nl',
     url='https://github.com/tkluck/accumulation_tree',
-    long_description=read('README.md'),
+    long_description="""
+A red/black tree which also stores partial aggregations at each node, making
+getting aggregations of key range slices an O(log(N)) operation.
+""",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
