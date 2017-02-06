@@ -44,6 +44,11 @@ cdef int is_red(Node node):
     else:
         return False
 
+cdef class NullKey:
+    pass
+
+cdef NullKey null_key = NullKey()
+
 cdef class _RBTree(object):
     cdef public Node _root
     cdef public int _count
@@ -60,7 +65,7 @@ cdef class _RBTree(object):
             self._root.red = False  # make root black
             return
 
-        cdef Node head = Node()  # False tree root
+        cdef Node head = Node(key=null_key)  # False tree root
         cdef Node grand_parent = None
         cdef Node grand_grand_parent = head
         cdef Node parent = None  # parent
@@ -108,7 +113,7 @@ cdef class _RBTree(object):
     def remove(self, key):
         if self._root is None:
             raise KeyError(str(key))
-        cdef Node head = Node()  # False tree root
+        cdef Node head = Node(key=null_key)  # False tree root
         cdef Node node = head
         node.right = self._root
         cdef Node parent = None
@@ -209,7 +214,8 @@ cdef class _AccumulationTree(_RBTree):
         return node
 
     cdef void set(self, Node node, int direction, Node child_node):
-        self._dirty_nodes.add(node.key)
+        if(node.key is not null_key):
+            self._dirty_nodes.add(node.key)
         node.set(direction, child_node)
 
     def insert(self, key, value):
