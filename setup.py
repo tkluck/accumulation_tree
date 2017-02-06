@@ -1,21 +1,8 @@
 import os
-from distutils.core import setup, Extension
+from setuptools import setup, Extension
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
-
-have_cython = False
-try:
-    from Cython.Distutils import build_ext
-    have_cython = True
-except ImportError:
-    from distutils.command.build_ext import build_ext
-
-ext_modules = []
-if have_cython:
-    ext_modules.append( Extension('accumulation_tree.accumulation_tree', ['accumulation_tree/accumulation_tree.pyx']) )
-else:
-    ext_modules.append( Extension('accumulation_tree.accumulation_tree', ['accumulation_tree/accumulation_tree.c']) )
 
 
 setup(
@@ -25,7 +12,6 @@ setup(
     author = 'Timo Kluck',
     author_email = 'tkluck@infty.nl',
     url='https://github.com/tkluck/accumulation_tree',
-    packages=['accumulation_tree'],
     long_description=read('README.md'),
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -37,8 +23,9 @@ setup(
     ],
     license='GPLv3+',
     keywords='BST, data structure, accumulation',
-    py_modules = ["accumulation_tree", "accumulation_tree.abctree", "accumulation_tree.treeslice"],
-    ext_modules = ext_modules,
-    cmdclass={'build_ext': build_ext},
+    setup_requires=["cython"],
+    packages=['accumulation_tree'],
+    ext_modules = [
+        Extension('accumulation_tree.accumulation_tree', ['accumulation_tree/accumulation_tree.pyx'])
+    ],
 )
-

@@ -1,9 +1,14 @@
+PYTHON ?= python
+
 all:
-	python setup.py install
+	$(PYTHON) setup.py install
 
 env:
-	virtualenv env
+	virtualenv -p $(PYTHON) env
 
 check: env
 	env/bin/python setup.py install
-	env/bin/python -m doctest tests.md
+	(cd env && bin/python -m doctest ../tests.md)
+
+clean:
+	rm -rf env build accumulation_tree.egg-info dist
