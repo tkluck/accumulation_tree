@@ -7,7 +7,7 @@ def read(fname):
 
 setup(
     name = 'accumulation_tree',
-    version = '0.1',
+    version = '0.2',
     description = 'Red/black tree with support for fast accumulation of values in a key range',
     author = 'Timo Kluck',
     author_email = 'tkluck@infty.nl',
