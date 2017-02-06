@@ -1,6 +1,7 @@
 accumulation_tree/accumulation_tree.c
+accumulation_tree/abctree.py
 accumulation_tree/accumulation_tree.pyx
 accumulation_tree/__init__.py
+accumulation_tree/treeslice.py
 README.md
-requirements.txt
 setup.py

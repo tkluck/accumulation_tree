@@ -1,4 +1,5 @@
-from bintrees.abctree import ABCTree
+from __future__ import absolute_import
+from .abctree import ABCTree
 import operator
 
 cdef class Node:

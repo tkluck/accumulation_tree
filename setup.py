@@ -27,7 +27,6 @@ setup(
     url='https://github.com/tkluck/accumulation_tree',
     packages=['accumulation_tree'],
     long_description=read('README.md'),
-    install_requires=['bintrees'],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
@@ -38,7 +37,7 @@ setup(
     ],
     license='GPLv3+',
     keywords='BST, data structure, accumulation',
-    py_modules = ["accumulation_tree"],
+    py_modules = ["accumulation_tree", "accumulation_tree.abctree", "accumulation_tree.treeslice"],
     ext_modules = ext_modules,
     cmdclass={'build_ext': build_ext},
 )
