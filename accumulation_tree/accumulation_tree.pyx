@@ -191,6 +191,15 @@ cdef class _RBTree(object):
         self.set(root, other_side, self.jsw_single(root.get(other_side), other_side))
         return self.jsw_single(root, direction)
 
+    def __getstate__(self):
+        return { 'payload': {k: v for k, v in self.items()} }
+
+    def __setstate__(self, state):
+        self._count = 0
+        self._root = None
+        for k, v in state['payload'].items():
+            self.insert(k, v)
+
 class RBTree(_RBTree, ABCTree):
     pass
 
@@ -337,6 +346,20 @@ cdef class _AccumulationTree(_RBTree):
                 )
             else:
                 x.accumulation = self._mapper(x.value)
+
+    def __getstate__(self):
+        state = _RBTree.__getstate__(self)
+        state['mapper'] = self._mapper
+        state['reducer'] = self._reducer
+        state['zero'] = self._zero
+        return state
+
+    def __setstate__(self, state):
+        self._dirty_nodes = set()
+        self._mapper = state.pop('mapper')
+        self._reducer = state.pop('reducer')
+        self._zero = state.pop('zero')
+        _RBTree.__setstate__(self, state)
 
 class AccumulationTree(_AccumulationTree, ABCTree):
     pass

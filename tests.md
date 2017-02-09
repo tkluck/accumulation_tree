@@ -27,3 +27,15 @@ And the same, but through the dictionary interface:
     >>> t[0] = 2
     >>> all(t.get_accumulation(0, 2*x) == 2 + x*(x-1) for x in range(1, N >> 1))
     True
+
+Let's convince ourselves that it also works when going through serialization. This
+needs 'cloudpickle' as opposed to just 'pickle', because we serialize lambda functions
+(the mapper and reducer).
+
+    >>> import cloudpickle as pickle
+    >>> s = pickle.loads(pickle.dumps(t))
+    >>> all(s.get_accumulation(0, 2*x) == 2 + x*(x-1) for x in range(1, N >> 1))
+    True
+    >>> s[0] = 1
+    >>> all(s.get_accumulation(0, 2*x) == 1 + x*(x-1) for x in range(1, N >> 1))
+    True

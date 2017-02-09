@@ -8,6 +8,7 @@ env:
 
 check: env
 	env/bin/python setup.py install
+	env/bin/pip install cloudpickle
 	(cd env && bin/python -m doctest ../tests.md)
 
 clean:
