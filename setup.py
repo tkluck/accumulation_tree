@@ -13,7 +13,7 @@ A red/black tree which also stores partial aggregations at each node, making
 getting aggregations of key range slices an O(log(N)) operation.
 """,
     classifiers=[
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python",
         "Topic :: Scientific/Engineering",
