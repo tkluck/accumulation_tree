@@ -1,6 +1,11 @@
 `accumulation_tree`
 ===================
 
+[![CircleCI][circleci-img]][circleci-url]
+
+[circleci-url]: https://circleci.com/gh/tkluck/accumulation_tree/
+[circleci-img]: https://img.shields.io/circleci/project/github/tkluck/pac4cli.svg
+
 A red/black tree which also stores partial aggregations at each node, making
 getting aggregations of key range slices an O(log(N)) operation.
 
