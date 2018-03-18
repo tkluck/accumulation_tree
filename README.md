@@ -4,6 +4,12 @@
 A red/black tree which also stores partial aggregations at each node, making
 getting aggregations of key range slices an O(log(N)) operation.
 
+This implementation was written specifically for use in [tdigest][tdigest-github],
+and borrows code from [bintrees][bintrees-github].
+
+[tdigest-github]: https://github.com/CamDavidsonPilon/tdigest/
+[bintrees-github]: https://github.com/mozman/bintrees/
+
 Synopsis
 --------
 ```python
