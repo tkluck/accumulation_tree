@@ -1,8 +1,26 @@
 version: 2
 jobs:
-  test:
+  python27:
+    docker:
+      - image: circleci/python:2.7
+    steps:
+      - checkout
+      - run: make check
+  python36:
     docker:
       - image: circleci/python:3.6
+    steps:
+      - checkout
+      - run: make check
+  python37:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+      - run: make check
+  python_latest:
+    docker:
+      - image: circleci/python:latest
     steps:
       - checkout
       - run: make check
@@ -10,4 +28,7 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - test
+      - python27
+      - python36
+      - python37
+      - python_latest
