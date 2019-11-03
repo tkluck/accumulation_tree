@@ -9,11 +9,17 @@
 A red/black tree which also stores partial aggregations at each node, making
 getting aggregations of key range slices an O(log(N)) operation.
 
+This data structure is very similar to a [Fenwick tree][wiki] and can be used
+for the same purpose. The main difference with the description on Wikipedia is
+that we allocate nodes on the heap instead of using an implicit tree structure
+on a flat array.
+
 This implementation was written specifically for use in [tdigest][tdigest-github],
 and borrows code from [bintrees][bintrees-github].
 
 [tdigest-github]: https://github.com/CamDavidsonPilon/tdigest/
 [bintrees-github]: https://github.com/mozman/bintrees/
+[wiki]: https://en.wikipedia.org/wiki/Fenwick_tree
 
 Synopsis
 --------
