@@ -16,3 +16,7 @@ check_sdist: env
 
 clean:
 	rm -rf env build accumulation_tree.egg-info dist
+
+release: clean env
+	env/bin/python setup.py build sdist --formats gztar
+	twine upload dist/*.tar.gz
