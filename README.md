@@ -35,4 +35,5 @@ Synopsis
 10
 >>> all(t.get_accumulation(0, x) == x*(x-1)/2 for x in range(N))
 True
+
 ```
