@@ -3,7 +3,7 @@ from setuptools import setup, Extension
 
 setup(
     name = 'accumulation_tree',
-    version = '0.6.2',
+    version = '0.6.3',
     description = 'Red/black tree with support for fast accumulation of values in a key range',
     author = 'Timo Kluck',
     author_email = 'tkluck@infty.nl',
