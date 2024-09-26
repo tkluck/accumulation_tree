@@ -2,19 +2,21 @@
 set -e
 set -o pipefail
 
+make
+
 ROOT="$(pwd)"
 TEMPDIR="$(mktemp -d)"
 
-env/bin/python setup.py build sdist -d "$TEMPDIR" --formats gztar
-
+cp -t "$TEMPDIR" dist/*.tar.gz
 cd "$TEMPDIR"
 tar -xf *.tar.gz
 rm *.tar.gz
 cd accumulation_tree-*
 
 virtualenv env
-env/bin/python setup.py install
-env/bin/pip install cloudpickle
+env/bin/pip install cloudpickle build
+env/bin/python -m build
+env/bin/pip install .
 
 cd env
 bin/python -m doctest "$ROOT/tests.md" "$ROOT/README.md"

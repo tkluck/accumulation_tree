@@ -1,14 +1,15 @@
-PYTHON ?= python
+PYTHON ?= python3
 
 all:
-	$(PYTHON) setup.py install
+	$(PYTHON) -m build
 
 env:
 	virtualenv -p $(PYTHON) env
+	env/bin/pip install build cloudpickle
 
 check: env
-	env/bin/python setup.py install
-	env/bin/pip install cloudpickle
+	env/bin/python -m build
+	env/bin/pip install .
 	(cd env && bin/python -m doctest ../tests.md ../README.md) # don't have pwd equal to toplevel or it will load (uncompiled) packages from there
 
 check_sdist: env
@@ -17,6 +18,5 @@ check_sdist: env
 clean:
 	rm -rf env build accumulation_tree.egg-info dist
 
-release: clean env
-	env/bin/python setup.py build sdist --formats gztar
-	twine upload dist/*.tar.gz
+release: clean all
+	twine upload dist/*.tar.gz dist/*.whl
