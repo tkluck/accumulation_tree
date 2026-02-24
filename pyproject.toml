@@ -5,14 +5,13 @@ description = "Red/black tree with support for fast accumulation of values in a 
 authors = [
   {name = "Timo Kluck", email = "tkluck@infty.nl"},
 ]
-license = {text = "MIT License"}
+readme = "README.md"
+license = "MIT"
 keywords = ["BST", "data structure", "accumulation"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
     "Topic :: Scientific/Engineering",
-    "Programming Language :: Python :: 2",
     "Programming Language :: Python :: 3",
 ]
 
@@ -20,5 +19,12 @@ classifiers = [
 Homepage = "https://github.com/tkluck/accumulation_tree"
 
 [build-system]
-requires = ["setuptools>=42", "cffi>=1.0.0", "cython"]
+requires = ["setuptools>=77", "cython"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[[tool.setuptools.ext-modules]]
+name = "accumulation_tree.accumulation_tree"
+sources = ["src/accumulation_tree/accumulation_tree.pyx"]

@@ -10,13 +10,14 @@ env:
 check: env
 	env/bin/python -m build
 	env/bin/pip install .
-	(cd env && bin/python -m doctest ../tests.md ../README.md) # don't have pwd equal to toplevel or it will load (uncompiled) packages from there
+	env/bin/python -m doctest tests.md README.md
 
 check_sdist: env
 	./check_sdist.sh
 
 clean:
-	rm -rf env build accumulation_tree.egg-info dist
+	rm -f src/accumulation_tree/accumulation_tree.c
+	rm -rf env build src/accumulation_tree.egg-info dist
 
 release: clean all
 	twine upload dist/*.tar.gz dist/*.whl

@@ -18,6 +18,5 @@ env/bin/pip install cloudpickle build
 env/bin/python -m build
 env/bin/pip install .
 
-cd env
 bin/python -m doctest "$ROOT/tests.md" "$ROOT/README.md"
 bin/python -Werr -c'import accumulation_tree'
